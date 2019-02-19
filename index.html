@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>JS IN DEPTH</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <label for="task">Title</label>
+    <input id="task" type="text" />
+    <br />
+    Prirority
+    <select id="priority">
+      <option value="0">low</option>
+      <option value="1">middle</option>
+      <option value="2">high</option>
+    </select>
+    <br />
+    <button onClick="saveTask()">save</button>
+    <button onClick="finalizeTask()">close</button>
+    <button onClick="unfinalizeTask()">open</button>
+    <button onClick="deleteTask()">delete</button>
+    <button onClick="archeive()">archeive</button>
+    <button onClick="edit()">edit</button>
+
+    <h1>Todo list</h1>
+    <div id="todolist"></div>
+
+    <h1 id="archeive">Archeive</h1>
+    <div id="ArcheivedList"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
