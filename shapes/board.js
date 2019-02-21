@@ -1,9 +1,9 @@
 const COLUMNS = 9;
 const ROWS = 7;
-const FIELDS = {
-  UP: 0,
-  BATTLE: 1,
-  DOWN: 2
+
+const TURNS = {
+  PLAYER1: 0,
+  PLAYER2: 1
 };
 var Board = function(x, y, width, height) {
   this.x = x;
@@ -13,6 +13,7 @@ var Board = function(x, y, width, height) {
   this.boardSquaresList = [];
   this.selectedSquare = null;
   this.name = "board";
+  this.mode = MODES.NORMAL;
 };
 
 Board.prototype.init = function() {
@@ -22,25 +23,19 @@ Board.prototype.init = function() {
   let field = null;
   for (let x = 0; x < COLUMNS; x++) {
     for (let y = 0; y < ROWS; y++) {
-      if ((x - y) % 2 == 0) {
-        color = "#616f39";
-      } else {
-        color = "#3e432e";
-      }
       switch (y) {
         case 0:
         case 1:
-          field = FIELDS.UP;
+          field = FIELDS.PLAYER_ONE;
           break;
         case 2:
         case 3:
         case 4:
-          field = FIELDS.BATTLE;
-          color = "#000000";
+          field = FIELDS.BATTLE_FIELD;
           break;
         case 5:
         case 6:
-          field = FIELDS.DOWN;
+          field = FIELDS.PLAYER_TWO;
           break;
         default:
           break;
@@ -51,18 +46,18 @@ Board.prototype.init = function() {
           y * squareHeight,
           squareWidth,
           squareHeight,
-          color,
-          field
+          field,
+          "test"
         )
       );
     }
   }
 };
 
-Board.prototype.render = function(context) {
+Board.prototype.render = function(context, curplayerId) {
   for (let index = 0; index < this.boardSquaresList.length; index++) {
     const element = this.boardSquaresList[index];
-    element.render(context);
+    element.render(context, curplayerId);
   }
 };
 
@@ -75,9 +70,14 @@ Board.prototype.select = function(x, y) {
     if (element.contains(x, y)) {
       this.selectedSquare = element;
       element.isSelected = true;
-      console.log(element.field);
       return element;
     }
   }
   return false;
+};
+
+Board.prototype.addHero = function(hero) {
+  if (this.selectedSquare != null) {
+    this.selectedSquare.setHero(hero);
+  }
 };

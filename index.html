@@ -6,15 +6,26 @@
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
+  <script src="constants.js"></script>
   <body>
     <canvas
       id="canvas"
-      width="500"
-      height="500"
+      width="700"
+      height="700"
       style="border: 1px solid #a7d129"
     ></canvas>
 
-    <div id="tool-collection"></div>
+    <div id="tool-collection">
+      <button onclick="createHero('knight')">create Knight</button>
+      <button onclick="createHero('elf')">create Elf</button>
+      <button onclick="createHero('dwarf')">create Dwarf</button>
+    </div>
+
+    <script src="shapes/dwarf.js"></script>
+    <script src="shapes/knight.js"></script>
+    <script src="shapes/elf.js"></script>
+    <script src="shapes/hero.js"></script>
+    <script src="shapes/player.js"></script>
     <script src="shapes/boardSquare.js"></script>
     <script src="shapes/board.js"></script>
     <script src="manager/canvas.js"></script>
