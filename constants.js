@@ -1,8 +1,10 @@
 const MODES = {
-  NORMAL: 0,
-  adding: 1,
-  move: 2,
-  attack: 3
+  NORMAL: "normal",
+  adding: "adding",
+  move: "move",
+  attack: "attack",
+  healing: "healing",
+  END_TURN: "endturn"
 };
 
 const FIELDS = {
@@ -11,7 +13,13 @@ const FIELDS = {
   PLAYER_TWO: 2
 };
 
+const HEROES = {
+  DWARF: "dwarf",
+  KNIGHT: "knight",
+  ELF: "ELF"
+};
+
 const PLAYERS = {
-  PLAYER_ONE: 1,
-  PLAYER_TWO: 2
+  PLAYER_ONE: true,
+  PLAYER_TWO: false
 };

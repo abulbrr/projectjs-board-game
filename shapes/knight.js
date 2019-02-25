@@ -1,4 +1,5 @@
-var Knight = function() {
+var Knight = function(player) {
+  this.player = player;
   this.name = "K";
   this.atk = 8;
   this.def = 3;

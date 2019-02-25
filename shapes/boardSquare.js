@@ -8,10 +8,12 @@ var BoardSquare = function(x, y, width, height, field) {
   this.name = null;
   this.hero = null;
   this.mode = MODES.NORMAL;
+  this.currentPlayer;
+  this.isObstacle = false;
 };
 
 BoardSquare.prototype.render = function(context, curplayerId) {
-  let index = Math.round(this.x / this.width - this.y / this.height);
+  let index = this.x - this.y;
   context.beginPath();
   switch (this.mode) {
     case MODES.NORMAL:
@@ -46,7 +48,7 @@ BoardSquare.prototype.render = function(context, curplayerId) {
     //   }
   }
   if (this.isSelected) {
-    context.fillStyle = "white";
+    context.fillStyle = "red";
   } else {
     context.fillStyle = this.color;
   }
@@ -61,12 +63,19 @@ BoardSquare.prototype.render = function(context, curplayerId) {
     context.strokeStyle = "white";
   }
 
-  context.rect(this.x, this.y, this.width, this.height);
+  context.rect(
+    this.x * this.width,
+    this.y * this.height,
+    this.width,
+    this.height
+  );
   context.fill();
   context.stroke();
-  context.fillStyle = "red";
+  context.fillStyle = "black";
+  let mappedX = this.x * this.width + 10;
+  let mappedY = this.y * this.height + 50;
 
-  context.fillText(text, this.x + 10, this.y + 50, this.width);
+  context.fillText(text, mappedX, mappedY, this.width);
   context.closePath();
 };
 
@@ -83,4 +92,8 @@ BoardSquare.prototype.removeHero = function() {
 
 BoardSquare.prototype.setHero = function(hero) {
   this.hero = hero;
+};
+
+BoardSquare.prototype.makeObstacle = () => {
+  this.isObstacle = true;
 };

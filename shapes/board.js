@@ -41,17 +41,12 @@ Board.prototype.init = function() {
           break;
       }
       this.boardSquaresList.push(
-        new BoardSquare(
-          x * squareWidth,
-          y * squareHeight,
-          squareWidth,
-          squareHeight,
-          field,
-          "test"
-        )
+        new BoardSquare(x, y, squareWidth, squareHeight, field, "test")
       );
     }
   }
+
+  this.createObstacles();
 };
 
 Board.prototype.render = function(context, curplayerId) {
@@ -79,5 +74,11 @@ Board.prototype.select = function(x, y) {
 Board.prototype.addHero = function(hero) {
   if (this.selectedSquare != null) {
     this.selectedSquare.setHero(hero);
+  }
+};
+
+Board.prototype.createObstacles = () => {
+  for (let index = 0; index < 5; index++) {
+    // let randomNum =
   }
 };

@@ -1,4 +1,5 @@
-var Dwarf = function() {
+var Dwarf = function(player) {
+  this.player = player;
   this.name = "D";
   this.atk = 6;
   this.def = 2;

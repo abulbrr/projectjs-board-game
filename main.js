@@ -2,6 +2,10 @@ function $(query) {
   return document.querySelector(query);
 }
 
+var elvesButton = $("#elf");
+var knightsButton = $("#knight");
+var dwarfsButton = $("#dwarf");
+
 CanvasManager.init("canvas");
 
 CanvasManager.onStart(function(e) {
@@ -11,8 +15,18 @@ CanvasManager.onStart(function(e) {
   CanvasManager.process(x, y);
 });
 
-function createHero(hero) {
-  CanvasManager.addHero(hero);
+function prepareHero(hero) {
+  CanvasManager.setCurrentAddingHero(hero);
+}
+
+function changeMode(mode) {
+  if (mode != MODES.adding) {
+    elvesButton.disabled = true;
+    knightsButton.disabled = true;
+    dwarfsButton.disabled = true;
+  }
+
+  CanvasManager.changeMode(mode);
 }
 
 // CanvasManager.onProcess(function(e) {

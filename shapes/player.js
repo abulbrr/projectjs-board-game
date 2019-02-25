@@ -1,16 +1,27 @@
-var player = function(id) {
-  this.id = name;
+var Player = function(id) {
+  this.id = id;
   this.health = 100;
   this.heroes = [];
   this.currentHero = null;
+  // this.createHeroes();
 };
 
-player.prototype.prepareHero = function(hero) {
-  console.log(this.heroes);
-  this.currentHero = new HeroesFactory(hero);
+Player.prototype.getHerosCount = type => {};
+
+Player.prototype.prepareHero = hero => {
+  this.currentHero = hero;
 };
 
-player.prototype.putHero = function() {
+Player.prototype.createHeroes = () => {
+  this.heroes.push(new HeroesFactory(HEROES.KNIGHT));
+  this.heroes.push(new HeroesFactory(HEROES.KNIGHT));
+  this.heroes.push(new HeroesFactory(HEROES.DWARF));
+  this.heroes.push(new HeroesFactory(HEROES.DWARF));
+  this.heroes.push(new HeroesFactory(HEROES.ELF));
+  this.heroes.push(new HeroesFactory(HEROES.ELF));
+};
+
+Player.prototype.putHero = () => {
   this.heroes.push(this.currentHero);
   var tempHero = this.currentHero;
   this.currentHero = null;
@@ -18,10 +29,10 @@ player.prototype.putHero = function() {
   return tempHero;
 };
 
-player.prototype.getCurrentHero = function() {
+Player.prototype.getCurrentHero = () => {
   return this.currentHero;
 };
 
-player.prototype.getId = function() {
+Player.prototype.getId = () => {
   return this.id;
 };
