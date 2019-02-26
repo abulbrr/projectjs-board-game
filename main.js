@@ -2,7 +2,7 @@ function $(query) {
   return document.querySelector(query);
 }
 
-var elvesButton = $("#elf");
+var elvesButton = $("#ELF");
 var knightsButton = $("#knight");
 var dwarfsButton = $("#dwarf");
 

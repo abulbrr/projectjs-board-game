@@ -73,12 +73,30 @@ Board.prototype.select = function(x, y) {
 
 Board.prototype.addHero = function(hero) {
   if (this.selectedSquare != null) {
-    this.selectedSquare.setHero(hero);
+    if (
+      this.selectedSquare.isObstacle == false &&
+      this.selectedSquare.hero == null &&
+      this.selectedSquare.isCurrentPlayerTeritory()
+    ) {
+      this.selectedSquare.setHero(hero);
+      PubSub.publish(Events.ON_HERO_ADDED_TO_BOARD, this.currentAddingHero);
+    }
   }
 };
 
-Board.prototype.createObstacles = () => {
+Board.prototype.createObstacles = function() {
   for (let index = 0; index < 5; index++) {
-    // let randomNum =
+    let randomX = Math.floor(Math.random() * 9);
+    let randomY = Math.floor(Math.random() * 2) + 3;
+    let selectedElement = this.boardSquaresList.find(
+      m => m.x == randomX && m.y == randomY
+    );
+
+    if (selectedElement == undefined) {
+      console.log(randomX + " , " + randomY);
+      return;
+    }
+
+    selectedElement.makeObstacle();
   }
 };

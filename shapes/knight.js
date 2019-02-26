@@ -1,4 +1,6 @@
 var Knight = function(player) {
+  this.type = HEROES.KNIGHT;
+  this.id = HEROES.KNIGHT + Utils.getUniqueId();
   this.player = player;
   this.name = "K";
   this.atk = 8;

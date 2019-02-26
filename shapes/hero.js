@@ -1,13 +1,13 @@
 var HeroesFactory = function(type) {
   var hero = null;
   switch (type) {
-    case "knight":
+    case HEROES.KNIGHT:
       hero = new Knight();
       break;
-    case "dwarf":
+    case HEROES.DWARF:
       hero = new Dwarf();
       break;
-    case "elf":
+    case HEROES.ELF:
       hero = new Elf();
       break;
 

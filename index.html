@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Page Title</title>
+    <title>Board Game</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <script src="constants.js"></script>
   <div>
     HEROES:
-    <button onclick="prepareHero(this.id)" id="elf">elves</button>
+    <button onclick="prepareHero(this.id)" id="ELF">elves</button>
     <button onclick="prepareHero(this.id)" id="knight">knights</button>
     <button onclick="prepareHero(this.id)" id="dwarf">dwarfs</button>
   </div>
@@ -36,6 +36,7 @@
       <button onclick="createHero('dwarf')">create Dwarf</button> -->
     </div>
 
+    <script src="utils/utils.js"></script>
     <script src="utils/PubSub.js"></script>
     <script src="shapes/dwarf.js"></script>
     <script src="shapes/knight.js"></script>
