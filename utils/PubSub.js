@@ -2,9 +2,11 @@ const Events = {
   ON_MODE_CHANGE: "onmodechange",
   ON_PLAYER_CHANGE: "onplayerchange",
   ON_HEROES_COUNT_CHANGE: "onHeroesCountChange",
-  ON_HERO_ADDED_TO_BOARD: "onheroaddedtoboard",
-  MOVING_HERO: "movingHero",
-  ADDING_FINISHED: "addingFinished"
+  ADDING_FINISHED: "addingFinished",
+  ROUNDS_CHANGED: "roundsChanged",
+  GAME_OVER: "gameover",
+  CURRENT_HERO_CHANGED: "currentHeroChanged",
+  CURRENT_HERO_HEALTH_CHANGED: "currentHeroChanged"
 };
 
 var PubSub = {};

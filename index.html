@@ -30,6 +30,13 @@
 
       <div>Current Mode: <span id="currentMode">None</span></div>
       <div>Current Player: <span id="currentPlayer">None</span></div>
+      <div>selected hero: <span id="selectedHero">None</span></div>
+      <div>selected hero health: <span id="selectedHeroHealth">None</span></div>
+      <div>rounds: <span id="rounds">0</span></div>
+      <div id="end"></div>
+
+      <button onclick="onFinishGameClicked()">finishGame</button>
+      <button onclick="onRestartClicked()">restart</button>
 
       <!-- <button onclick="createHero('knight')">create Knight</button>
       <button onclick="createHero('elf')">create Elf</button>
@@ -37,6 +44,7 @@
     </div>
     <script src="shapes/obstacle.js"></script>
     <script src="manager/AttackingManager.js"></script>
+    <script src="manager/HealingManager.js"></script>
     <script src="manager/MovingManager.js"></script>
     <script src="manager/GameplayManager.js"></script>
     <script src="manager/AddingManager.js"></script>

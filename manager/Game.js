@@ -8,6 +8,14 @@ GameManager.currentPlayer;
 
 GameManager.mode = MODES.ADDING;
 
+GameManager.restart = function() {
+  this.players = [];
+
+  this.currentPlayer = null;
+
+  AddingManager.restart();
+};
+
 GameManager.init = function(width, height) {
   this.canvas = CanvasManager;
   this.canvas.init("canvas");
@@ -16,14 +24,12 @@ GameManager.init = function(width, height) {
 
   this.board = this.canvas.getBoard();
 
-  this.players.push(new Player(PLAYERS.PLAYER_ONE, "red", [0, 1]));
-  this.players.push(new Player(PLAYERS.PLAYER_TWO, "green", [5, 6]));
+  this.players.push(new Player(PLAYERS.PLAYER_A, "red", [0, 1]));
+  this.players.push(new Player(PLAYERS.PLAYER_B, "green", [5, 6]));
   this.players.forEach(player => player.createHeroes());
   this.currentPlayer = this.players[0];
 
   ManagersFactory(MODES.ADDING);
-
-  //   PubSub.publish(Events.ON_HEROES_COUNT_CHANGE);
 };
 
 GameManager.subscribe = function() {
@@ -33,14 +39,24 @@ GameManager.subscribe = function() {
   });
 
   PubSub.subscribe(Events.ON_PLAYER_CHANGE, () => {
-    console.log("player changed");
     GameManager.canvas.render();
   });
+};
+GameManager.getPlayersData = function() {
+  return this.currentModeManager.players;
 };
 
 GameManager.clicked = function(e) {
   var x = e.layerX;
   var y = e.layerY;
+  let selectedSquare = GameManager.canvas.getSelected(x, y);
+  if (selectedSquare.hasHero() && !selectedSquare.hero.isObstacle) {
+    PubSub.publish(Events.CURRENT_HERO_CHANGED, selectedSquare.hero);
+    PubSub.publish(
+      Events.CURRENT_HERO_HEALTH_CHANGED,
+      selectedSquare.hero.health
+    );
+  }
   GameManager.currentModeManager.clicked(GameManager.canvas.getSelected(x, y));
   GameManager.canvas.render();
 };

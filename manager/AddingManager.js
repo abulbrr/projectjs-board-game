@@ -13,6 +13,12 @@ AddingManager.players;
 AddingManager.currentPlayer;
 AddingManager.currentlyAddingHero = null;
 
+AddingManager.restart = function() {
+  elvesButton.style.display = "inline";
+  knightsButton.style.display = "inline";
+  dwarfsButton.style.display = "inline";
+  this.updateButtons();
+};
 AddingManager.init = function(board, players) {
   this.board = board;
   this.players = players;

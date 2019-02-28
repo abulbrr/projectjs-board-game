@@ -11,7 +11,9 @@ var BoardSquare2 = function(x, y, width, height, text, color) {
 BoardSquare2.prototype.render = function(context) {
   if (this.hero != null) {
     if (this.hero.isObstacle == true) this.color = "black";
-    this.text = this.hero.name;
+    if (this.hero != null && !this.hero.isObstacle) {
+      this.text = this.hero.name + this.hero.player.id;
+    }
   }
   context.beginPath();
   context.fillStyle = this.color;
@@ -46,4 +48,7 @@ BoardSquare2.prototype.addHero = function(hero) {
 
 BoardSquare2.prototype.hasHero = function() {
   return this.hero != null;
+};
+BoardSquare2.prototype.killHero = function() {
+  this.hero = null;
 };

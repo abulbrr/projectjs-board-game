@@ -7,6 +7,7 @@ var Player = function(id, color, field) {
   this.heroes = [];
   this.currentHero = null;
   this.points = 0;
+  this.deadHeroes = [];
 };
 
 Player.prototype.getHeroesCount = function(type) {
@@ -24,12 +25,12 @@ Player.prototype.isCurrentPlayersHero = function(hero) {
 };
 
 Player.prototype.createHeroes = function() {
-  this.addHero(new HeroesFactory(HEROES.KNIGHT));
-  this.addHero(new HeroesFactory(HEROES.KNIGHT));
-  this.addHero(new HeroesFactory(HEROES.DWARF));
-  this.addHero(new HeroesFactory(HEROES.DWARF));
-  this.addHero(new HeroesFactory(HEROES.ELF));
-  this.addHero(new HeroesFactory(HEROES.ELF));
+  this.addHero(new HeroesFactory(HEROES.KNIGHT, this));
+  this.addHero(new HeroesFactory(HEROES.KNIGHT, this));
+  this.addHero(new HeroesFactory(HEROES.DWARF, this));
+  this.addHero(new HeroesFactory(HEROES.DWARF, this));
+  this.addHero(new HeroesFactory(HEROES.ELF, this));
+  this.addHero(new HeroesFactory(HEROES.ELF, this));
 };
 
 Player.prototype.putHeroInHeroesList = function(hero) {
@@ -42,6 +43,12 @@ Player.prototype.getCurrentHero = () => {
 
 Player.prototype.getId = () => {
   return this.id;
+};
+Player.prototype.killHero = function(hero) {
+  this.deadHeroes.push(hero);
+  let tempHero = this.heroes.find(h => h.id == hero.id);
+  let index = this.heroes.indexOf(tempHero);
+  if (index != -1) this.heroes.splice(index, 1);
 };
 
 Player.prototype.takeHero = function(hero) {

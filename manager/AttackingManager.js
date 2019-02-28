@@ -6,6 +6,12 @@ AttackManager.squaresList = null;
 AttackManager.attackSquares = 0;
 AttackManager.attackingSquare = null;
 
+AttackManager.reset = function() {
+  AttackManager.attackSquares = 0;
+  AttackManager.attackingSquare = null;
+  this.resetColors();
+};
+
 AttackManager.init = function(board, currentPlayer) {
   console.log("Attack manager init");
   this.board = board;
@@ -17,16 +23,15 @@ AttackManager.clicked = function(element) {
   let attacked = false;
   this.board.setMode(MODES.ATTACKING);
 
-  console.log(element.x + " , " + element.y);
   if (!element.hasHero()) {
     this.attackingSquare = null;
     this.resetColors();
-    return;
+    return attacked;
   }
 
-  if (element.isObstacle && this.isAttackable(element)) element.hero = null;
+  if (element.hero.isObstacle && this.isAttackable(element)) element.killHero();
   if (element.color == "pink" && this.attackingSquare != null) {
-    this.attack(this.attackingSquare.hero, element.hero);
+    this.attack(this.attackingSquare, element);
     attacked = true;
   }
   this.attackingSquare = null;
@@ -38,6 +43,7 @@ AttackManager.clicked = function(element) {
     this.setPossibleMoves();
   }
   element.color = "purple";
+  return attacked;
 };
 
 AttackManager.setPossibleMoves = function() {
@@ -63,7 +69,7 @@ AttackManager.setPossibleMoves = function() {
 };
 
 AttackManager.resetColors = function() {
-  this.board.reset();
+  if (this.board != null) this.board.reset();
 };
 
 AttackManager.isAttackable = function(attacked) {
@@ -75,16 +81,39 @@ AttackManager.isAttackable = function(attacked) {
   );
 };
 
-AttackManager.attack = function(attacker, hero) {
-  let diceSum = this.diceGame(hero);
-  if (diceSum == hero.health) {
+AttackManager.attack = function(attackerSquare, defenderSquare) {
+  var attacker = attackerSquare.hero;
+  var defender = defenderSquare.hero;
+
+  let diceSum = this.diceGame();
+  let attack = attacker.atk - defender.def;
+
+  if (diceSum == defender.health) {
+    console.log("attack failed");
     return;
   }
+  // 3 smallest possible sum.
+  if (diceSum == 3) {
+    console.log("half attack");
+    attack = attack / 2;
+  }
 
-//   if(diceSum == )
+  console.log("attack");
+
+  defender.health -= attack;
+  this.currentPlayer.points += attack;
+
+  if (defender.health <= 0) {
+    PubSub.publish(Events.ON_HEROES_COUNT_CHANGE);
+    defender.player.killHero(defender);
+    defenderSquare.killHero();
+    if (defender.player.heroes.length == 0) {
+      PubSub.publish(Events.GAME_OVER);
+    }
+  }
 };
 
-AttackManager.diceGame = function(hero) {
+AttackManager.diceGame = function() {
   let dice = Math.floor(Math.random() * 7) + 1;
   dice += Math.floor(Math.random() * 7) + 1;
   dice += Math.floor(Math.random() * 7) + 1;
