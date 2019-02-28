@@ -6,14 +6,14 @@ var elvesButton = $("#ELF");
 var knightsButton = $("#knight");
 var dwarfsButton = $("#dwarf");
 
-CanvasManager.init("canvas");
+GameManager.init();
 
-CanvasManager.onStart(function(e) {
-  var x = e.layerX;
-  var y = e.layerY;
+// CanvasManager.onStart(function(e) {
+//   var x = e.layerX;
+//   var y = e.layerY;
 
-  CanvasManager.process(x, y);
-});
+//   CanvasManager.process(x, y);
+// });
 
 function prepareHero(hero) {
   CanvasManager.setCurrentAddingHero(hero);

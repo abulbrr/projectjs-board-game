@@ -1,10 +1,9 @@
 const MODES = {
   NORMAL: "normal",
-  adding: "adding",
-  move: "move",
-  attack: "attack",
-  healing: "healing",
-  END_TURN: "endturn"
+  ADDING: "adding",
+  MOVING: "move",
+  ATTACKING: "attack",
+  HEALING: "healing"
 };
 
 const FIELDS = {
@@ -20,6 +19,6 @@ const HEROES = {
 };
 
 const PLAYERS = {
-  PLAYER_ONE: true,
-  PLAYER_TWO: false
+  PLAYER_A: "A",
+  PLAYER_B: "B"
 };

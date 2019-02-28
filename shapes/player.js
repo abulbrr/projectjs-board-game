@@ -1,9 +1,12 @@
-var Player = function(id) {
+var Player = function(id, color, field) {
+  this.field = field;
+  this.color = color;
   this.id = id;
   this.health = 100;
   this.UnassignedHeroes = [];
   this.heroes = [];
   this.currentHero = null;
+  this.points = 0;
 };
 
 Player.prototype.getHeroesCount = function(type) {
@@ -13,6 +16,11 @@ Player.prototype.getHeroesCount = function(type) {
 Player.prototype.prepareHero = function(hero) {
   this.currentHero = this.takeHero(hero);
   return this.currentHero;
+};
+
+Player.prototype.isCurrentPlayersHero = function(hero) {
+  let h = this.heroes.find(h => h.id == hero.id);
+  return h != undefined;
 };
 
 Player.prototype.createHeroes = function() {
@@ -26,11 +34,6 @@ Player.prototype.createHeroes = function() {
 
 Player.prototype.putHeroInHeroesList = function(hero) {
   this.heroes.push(hero);
-  // var tempHero = this.currentHero;
-
-  // this.currentHero = null;
-
-  // return tempHero;
 };
 
 Player.prototype.getCurrentHero = () => {
@@ -53,5 +56,4 @@ Player.prototype.takeHero = function(hero) {
 
 Player.prototype.addHero = function(hero) {
   this.UnassignedHeroes.push(hero);
-  PubSub.publish(Events.ON_HEROES_COUNT_CHANGE);
 };

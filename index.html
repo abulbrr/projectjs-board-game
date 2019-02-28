@@ -9,9 +9,9 @@
   <script src="constants.js"></script>
   <div>
     HEROES:
-    <button onclick="prepareHero(this.id)" id="ELF">elves</button>
-    <button onclick="prepareHero(this.id)" id="knight">knights</button>
-    <button onclick="prepareHero(this.id)" id="dwarf">dwarfs</button>
+    <button id="ELF">elves</button>
+    <button id="knight">knights</button>
+    <button id="dwarf">dwarfs</button>
   </div>
 
   <body>
@@ -23,10 +23,10 @@
     ></canvas>
 
     <div id="tool-collection">
-      <button onclick="changeMode('move')">Move</button>
-      <button onclick="changeMode('attack')">Attack</button>
-      <button onclick="changeMode('heal')">Heal</button>
-      <button onclick="changeMode('endturn')">endTurn</button>
+      <button id="move">Move</button>
+      <button id="attack">Attack</button>
+      <button id="heal">Heal</button>
+      <button id="endturn">endTurn</button>
 
       <div>Current Mode: <span id="currentMode">None</span></div>
       <div>Current Player: <span id="currentPlayer">None</span></div>
@@ -35,7 +35,12 @@
       <button onclick="createHero('elf')">create Elf</button>
       <button onclick="createHero('dwarf')">create Dwarf</button> -->
     </div>
-
+    <script src="shapes/obstacle.js"></script>
+    <script src="manager/AttackingManager.js"></script>
+    <script src="manager/MovingManager.js"></script>
+    <script src="manager/GameplayManager.js"></script>
+    <script src="manager/AddingManager.js"></script>
+    <script src="manager/Game.js"></script>
     <script src="utils/utils.js"></script>
     <script src="utils/PubSub.js"></script>
     <script src="shapes/dwarf.js"></script>
@@ -43,9 +48,9 @@
     <script src="shapes/elf.js"></script>
     <script src="shapes/hero.js"></script>
     <script src="shapes/player.js"></script>
-    <script src="shapes/boardSquare.js"></script>
+    <script src="shapes/BoardSquare.js"></script>
     <script src="shapes/board.js"></script>
-    <script src="manager/canvas.js"></script>
+    <script src="manager/Canvas.js"></script>
     <script src="shapes/rect.js"></script>
     <script src="main.js"></script>
   </body>

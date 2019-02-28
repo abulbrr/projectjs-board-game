@@ -1,5 +1,6 @@
 var Dwarf = function(player) {
   this.type = HEROES.DWARF;
+  this.id = HEROES.DWARF + Utils.getUniqueId();
   this.player = player;
   this.name = "D";
   this.atk = 6;

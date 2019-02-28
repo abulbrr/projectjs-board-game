@@ -1,5 +1,6 @@
 var Elf = function(player) {
   this.type = HEROES.ELF;
+  this.id = HEROES.ELF + Utils.getUniqueId();
   this.player = player;
   this.name = "E";
   this.atk = 6;

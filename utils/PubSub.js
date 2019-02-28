@@ -2,7 +2,9 @@ const Events = {
   ON_MODE_CHANGE: "onmodechange",
   ON_PLAYER_CHANGE: "onplayerchange",
   ON_HEROES_COUNT_CHANGE: "onHeroesCountChange",
-  ON_HERO_ADDED_TO_BOARD: "onheroaddedtoboard"
+  ON_HERO_ADDED_TO_BOARD: "onheroaddedtoboard",
+  MOVING_HERO: "movingHero",
+  ADDING_FINISHED: "addingFinished"
 };
 
 var PubSub = {};
